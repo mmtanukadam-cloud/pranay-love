@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Cutie ❤️</title>
+
+<style>
+:root{
+    --bg:#0d0710;
+    --card:rgba(255,255,255,.08);
+    --line:rgba(255,255,255,.15);
+    --text:#fff7fb;
+    --muted:#d9cbd3;
+    --pink:#ff5f98;
+    --light:#ffc4d9;
+    --purple:#b985ff;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    color:var(--text);
+    font-family:Georgia,"Times New Roman",serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(255,95,152,.20),transparent 30%),
+        radial-gradient(circle at 90% 80%,rgba(185,133,255,.18),transparent 30%),
+        var(--bg);
+    overflow-x:hidden;
+}
+
+/* Floating background hearts */
+
+.bg-heart{
+    position:fixed;
+    color:rgba(255,120,165,.18);
+    pointer-events:none;
+    animation:floatUp linear infinite;
+    z-index:0;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(110vh) rotate(0deg);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Pages */
+
+.screen{
+    min-height:100vh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:70px 18px 40px;
+    position:relative;
+    z-index:2;
+}
+
+.screen.active{
+    display:flex;
+    animation:pageIn .7s ease both;
+}
+
+.wrap{
+    width:min(900px,100%);
+    text-align:center;
+}
+
+.card{
+    padding:clamp(25px,5vw,55px);
+    border:1px solid var(--line);
+    border-radius:32px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.035)
+        );
+    backdrop-filter:blur(18px);
+    box-shadow:0 30px 90px rgba(0,0,0,.35);
+}
+
+/* Text */
+
+.eyebrow{
+    color:var(--light);
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font:600 11px/1.5 Arial,sans-serif;
+    margin-bottom:18px;
+}
+
+h1{
+    font-size:clamp(48px,10vw,90px);
+    line-height:.95;
+    margin:0 0 20px;
+}
+
+h2{
+    font-size:clamp(32px,7vw,58px);
+    margin:0 0 22px;
+}
+
+p{
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.8;
+}
+
+.lead{
+    max-width:650px;
+    margin:0 auto 30px;
+    font-size:20px;
+}
+
+/* Heart */
+
+.hero-heart{
+    font-size:90px;
+    color:#ff6f9c;
+    text-shadow:
+        0 0 30px rgba(255,80,140,.5);
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+/* Buttons */
+
+.btn{
+    border:1px solid rgba(255,255,255,.25);
+    color:#1b1015;
+    background:#fff;
+    padding:14px 24px;
+    border-radius:999px;
+    font:700 15px Arial,sans-serif;
+    cursor:pointer;
+    margin:7px;
+    transition:.25s;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 15px 35px rgba(255,95,152,.25);
+}
+
+.btn.pink{
+    color:white;
+    background:linear-gradient(135deg,#ff5f98,#ff8db5);
+    border:0;
+}
+
+.btn.dark{
+    background:transparent;
+    color:white;
+}
+
+/* Music */
+
+.music{
+    position:fixed;
+    top:15px;
+    left:15px;
+    z-index:50;
+}
+
+.music button{
+    border:1px solid var(--line);
+    background:rgba(15,8,17,.78);
+    backdrop-filter:blur(12px);
+    color:white;
+    border-radius:999px;
+    padding:10px 15px;
+    cursor:pointer;
+}
+
+/* Page number */
+
+.top-note{
+    position:fixed;
+    right:15px;
+    top:15px;
+    z-index:50;
+    padding:8px 13px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:rgba(15,8,17,.75);
+    color:var(--muted);
+    font:12px Arial,sans-serif;
+}
+
+/* Progress */
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:3px;
+    width:0;
+    z-index:100;
+    background:linear-gradient(90deg,#ff5f98,#ffd2e1);
+}
+
+/* Letter */
+
+.letter{
+    text-align:left;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:#f5e9ee;
+    font-size:17px;
+    line-height:1.9;
+}
+
+.quote{
+    color:#ffd2e1;
+    font-size:22px;
+    font-style:italic;
+    max-width:650px;
+    margin:28px auto;
+}
+
+/* Gallery */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin:30px 0;
+}
+
+.photo{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    border-radius:24px;
+    border:1px solid var(--line);
+    cursor:pointer;
+    transition:.35s;
+    background:#241b20;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.photo:hover{
+    transform:translateY(-7px) scale(1.02);
+    box-shadow:0 20px 40px rgba(255,95,152,.2);
+}
+
+/* Counter */
+
+.counter{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin:30px 0;
+}
+
+.time{
+    padding:20px 10px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:rgba(255,255,255,.06);
+}
+
+.time strong{
+    display:block;
+    color:white;
+    font-size:32px;
+}
+
+.time small{
+    color:var(--muted);
+    font:12px Arial,sans-serif;
+}
+
+/* Secret */
+
+.secret{
+    padding:35px 20px;
+    border-radius:28px;
+    background:rgba(255,95,152,.07);
+    border:1px solid rgba(255,95,152,.22);
+}
+
+.secret-text{
+    display:none;
+}
+
+.secret-text.show{
+    display:block;
+    animation:pageIn .7s ease;
+}
+
+.final{
+    color:#ff9fbd;
+    font-size:clamp(30px,6vw,55px);
+    margin:25px 0;
+}
+
+/* Lightbox */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.90);
+    z-index:200;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.lightbox.show{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:95%;
+    max-height:90vh;
+    object-fit:contain;
+    border-radius:20px;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    color:white;
+    background:transparent;
+    border:0;
+    font-size:38px;
+    cursor:pointer;
+}
+
+/* Hearts explosion */
+
+.float-heart{
+    position:fixed;
+    bottom:-40px;
+    pointer-events:none;
+    z-index:300;
+    animation:heartFly 6s linear forwards;
+}
+
+@keyframes heartFly{
+    to{
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+        opacity:0;
+    }
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+/* Mobile */
+
+@media(max-width:650px){
+
+    .gallery{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .counter{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .screen{
+        padding:75px 15px 35px;
+    }
+
+    .top-note{
+        display:none;
+    }
+
+    .hero-heart{
+        font-size:70px;
+    }
+
+    .card{
+        border-radius:25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Progress -->
+<div class="progress" id="progress"></div>
+
+<!-- Page number -->
+<div class="top-note" id="pageLabel">1 / 6</div>
+
+<!-- Music -->
+<div class="music">
+    <button id="musicBtn" type="button">
+        🎵 Play Song
+    </button>
+
+    <audio id="song" loop preload="metadata">
+        <source src="tumsehi.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<main>
+
+<!-- PAGE 1 -->
+
+<section class="screen active">
+
+    <div class="wrap">
+
+        <div class="eyebrow">
+            A little website made with love
+        </div>
+
+        <div class="hero-heart">
+            ❤️
+        </div>
+
+        <h1>
+            For My Cutie
+        </h1>
+
+        <p class="lead">
+            Pranay, this little corner of the internet
+            is only for you. ❤️
+        </p>
+
+        <button class="btn pink next">
+            Open My Surprise →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PAGE 2 -->
+
+<section class="screen">
+
+    <div class="wrap card">
+
+        <div class="eyebrow">
+            Page 02 · For My Love
+        </div>
+
+        <h2>
+            Happy Boyfriend Day,
+            Cutie ❤️
+        </h2>
+
+        <p class="lead">
+            My baby, you are one of the most
+            special people in my life.
+        </p>
+
+        <p>
+            Thank you for all the little moments,
+            random conversations, smiles,
+            laughs and memories.
+        </p>
+
+        <p>
+            You make ordinary days feel a
+            little more beautiful. 🥹❤️
+        </p>
+
+        <p class="quote">
+            "Some people become your favorite
+            part of every day without even trying."
+        </p>
+
+        <button class="btn pink next">
+            Open My Letter 💌
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PAGE 3 -->
+
+<section class="screen">
+
+    <div class="wrap card">
+
+        <div class="eyebrow">
+            Page 03 · From My Heart
+        </div>
+
+        <h2>
+            My Letter To You 💌
+        </h2>
+
+        <div class="letter">
+
+            My Baby Pranay ❤️,
+
+            <br><br>
+
+            Kabhi kabhi mujhe lagta hai ki main
+            tujhe bata hi nahi paati ki tu mere
+            liye kitna important hai.
+
+            <br><br>
+
+            Tere saath normal moments bhi
+            special lagne lagte hain.
+
+            Teri smile, teri baatein aur humare
+            chhote-chhote moments mere liye
+            bahut precious hain. 🥹
+
+            <br><br>
+
+            Main bas itna chahti hoon ki hum
+            ek dusre ko samjhein, support karein
+            aur life mein bahut saari beautiful
+            memories banayein.
+
+            <br><br>
+
+            No matter how busy life gets,
+            I hope we always find our way
+            back to each other. ❤️
+
+            <br><br>
+
+            <strong>
+                I LOVE YOU MORE THAN
+                I CAN EXPLAIN. ❤️
+            </strong>
+
+            <br><br>
+
+            Always your Swweetu,
+
+            <br>
+
+            <strong>
+                Tanvi 💕
+            </strong>
+
+        </div>
+
+        <button class="btn pink next">
+            Open Our Memories 📸
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PAGE 4 -->
+
+<section class="screen">
+
+    <div class="wrap card">
+
+        <div class="eyebrow">
+            Page 04 · Our Memories
+        </div>
+
+        <h2>
+            Little Moments,
+            Big Memories 📸
+        </h2>
+
+        <p>
+            Every picture has a little story
+            that belongs to us.
+        </p>
+
+        <div class="gallery">
+
+            <img
+                class="photo"
+                src="photo1.jpg"
+                alt="Our memory 1">
+
+            <img
+                class="photo"
+                src="photo2.jpg"
+                alt="Our memory 2">
+
+            <img
+                class="photo"
+                src="photo3.jpg"
+                alt="Our memory 3">
+
+        </div>
+
+        <p>
+            Tap a photo to see it bigger. ❤️
+        </p>
+
+        <button class="btn pink next">
+            See Our Time Together ⏳
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PAGE 5 -->
+
+<section class="screen">
+
+    <div class="wrap card">
+
+        <div class="eyebrow">
+            Page 05 · Since 25 April 2025
+        </div>
+
+        <h2>
+            Together For... ⏳
+        </h2>
+
+        <p>
+            Every second with you matters. ❤️
+        </p>
+
+        <p>
+            Our journey started on
+            <strong>25 April 2025</strong>.
+        </p>
+
+        <div class="counter">
+
+            <div class="time">
+                <strong id="days">0</strong>
+                <small>Days</small>
+            </div>
+
+            <div class="time">
+                <strong id="hours">0</strong>
+                <small>Hours</small>
+            </div>
+
+            <div class="time">
+                <strong id="mins">0</strong>
+                <small>Minutes</small>
+            </div>
+
+            <div class="time">
+                <strong id="secs">0</strong>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+        <button class="btn pink next">
+            Open The Secret 🔐
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- PAGE 6 -->
+
+<section class="screen">
+
+    <div class="wrap card">
+
+        <div class="eyebrow">
+            Page 06 · Only For You
+        </div>
+
+        <h2>
+            One Last Thing... 🔐
+        </h2>
+
+        <div class="secret">
+
+            <p>
+                There is one last little message
+                hidden here.
+            </p>
+
+            <button
+                class="btn pink"
+                id="secretBtn">
+                Open Secret ❤️
+            </button>
+
+            <div
+                class="secret-text"
+                id="secretText">
+
+                <div class="final">
+                    You Are My Favorite Person. ❤️
+                </div>
+
+                <p>
+                    Thank you for being a beautiful
+                    part of my life.
+                </p>
+
+                <p>
+                    Thank you for every smile,
+                    every conversation, every
+                    memory and every little moment.
+                </p>
+
+                <p>
+                    I hope we keep choosing each
+                    other, again and again.
+                </p>
+
+                <p>
+                    <strong>
+                        25 April 2025 —
+                        and every day after that. ♾️
+                    </strong>
+                </p>
+
+                <p>
+                    With all my love,
+                    <br><br>
+
+                    <strong>
+                        Your Swweetu 💕
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <button
+            class="btn dark"
+            id="restart">
+            ↺ Start Again
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- PHOTO LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+    <button class="close" id="close">
+        ×
+    </button>
+
+    <img
+        id="lightboxImg"
+        alt="Expanded memory">
+
+</div>
+
+
+<script>
+
+/* =========================
+   PAGE SYSTEM
+========================= */
+
+const screens =
+    [...document.querySelectorAll(".screen")];
+
+let current = 0;
+
+function showPage(index){
+
+    current =
+        Math.max(
+            0,
+            Math.min(
+                screens.length - 1,
+                index
+            )
+        );
+
+    screens.forEach((screen,i)=>{
+        screen.classList.toggle(
+            "active",
+            i === current
+        );
+    });
+
+    document.getElementById("pageLabel")
+        .textContent =
+        (current + 1) + " / " + screens.length;
+
+    document.getElementById("progress")
+        .style.width =
+        (current / (screens.length - 1) * 100) + "%";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* NEXT BUTTONS */
+
+document
+    .querySelectorAll(".next")
+    .forEach(button=>{
+
+        button.addEventListener(
+            "click",
+            ()=>{
+                showPage(current + 1);
+            }
+        );
+
+    });
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const audio =
+    document.getElementById("song");
+
+const musicBtn =
+    document.getElementById("musicBtn");
+
+musicBtn.addEventListener(
+    "click",
+    async ()=>{
+
+        try{
+
+            if(audio.paused){
+
+                await audio.play();
+
+                musicBtn.textContent =
+                    "⏸ Pause Song";
+
+            }else{
+
+                audio.pause();
+
+                musicBtn.textContent =
+                    "🎵 Play Song";
+            }
+
+        }catch(error){
+
+            alert(
+                "Song file nahi mil rahi. Make sure tumsehi.mp3 GitHub repository mein hai."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   COUNTER
+========================= */
+
+const start =
+    new Date("2025-04-25T00:00:00").getTime();
+
+function updateCounter(){
+
+    const now =
+        Date.now();
+
+    const diff =
+        Math.max(0,now - start);
+
+    const day =
+        86400000;
+
+    const hour =
+        3600000;
+
+    const minute =
+        60000;
+
+    const second =
+        1000;
+
+    document.getElementById("days")
+        .textContent =
+        Math.floor(diff / day);
+
+    document.getElementById("hours")
+        .textContent =
+        Math.floor((diff % day) / hour);
+
+    document.getElementById("mins")
+        .textContent =
+        Math.floor((diff % hour) / minute);
+
+    document.getElementById("secs")
+        .textContent =
+        Math.floor((diff % minute) / second);
+}
+
+updateCounter();
+
+setInterval(updateCounter,1000);
+
+
+/* =========================
+   PHOTO LIGHTBOX
+========================= */
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightboxImg =
+    document.getElementById("lightboxImg");
+
+document
+    .querySelectorAll(".photo")
+    .forEach(img=>{
+
+        img.addEventListener(
+            "click",
+            ()=>{
+
+                lightboxImg.src =
+                    img.src;
+
+                lightbox.classList.add(
+                    "show"
+                );
+
+            }
+        );
+
+    });
+
+function closeBox(){
+
+    lightbox.classList.remove(
+        "show"
+    );
+
+}
+
+document
+    .getElementById("close")
+    .addEventListener(
+        "click",
+        closeBox
+    );
+
+lightbox.addEventListener(
+    "click",
+    event=>{
+
+        if(event.target === lightbox){
+            closeBox();
+        }
+
+    }
+);
+
+
+/* =========================
+   SECRET MESSAGE
+========================= */
+
+document
+    .getElementById("secretBtn")
+    .addEventListener(
+        "click",
+        ()=>{
+
+            document
+                .getElementById("secretText")
+                .classList.add("show");
+
+            createHearts();
+
+        }
+    );
+
+
+/* =========================
+   HEART ANIMATION
+========================= */
+
+function createHearts(){
+
+    for(let i=0;i<25;i++){
+
+        const heart =
+            document.createElement("div");
+
+        heart.className =
+            "float-heart";
+
+        const symbols =
+            ["❤️","💕","💗","💖","♡","✨"];
+
+        heart.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+            (16 + Math.random() * 28) + "px";
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },7500);
+
+    }
+}
+
+
+/* Background hearts */
+
+for(let i=0;i<15;i++){
+
+    const heart =
+        document.createElement("div");
+
+    heart.className =
+        "bg-heart";
+
+    heart.textContent =
+        "♥";
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 35) + "px";
+
+    heart.style.animationDuration =
+        (8 + Math.random() * 10) + "s";
+
+    heart.style.animationDelay =
+        Math.random() * 8 + "s";
+
+    document.body.appendChild(heart);
+}
+
+
+/* =========================
+   START AGAIN
+========================= */
+
+document
+    .getElementById("restart")
+    .addEventListener(
+        "click",
+        ()=>{
+
+            showPage(0);
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        }
+    );
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener(
+    "keydown",
+    event=>{
+
+        if(event.key === "ArrowRight"){
+            showPage(current + 1);
+        }
+
+        if(event.key === "ArrowLeft"){
+            showPage(current - 1);
+        }
+
+        if(event.key === "Escape"){
+            closeBox();
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
